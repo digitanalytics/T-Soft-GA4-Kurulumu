@@ -1,0 +1,726 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2023-05-08 08:08:41",
+    "containerVersion": {
+        "path": "accounts/6001380902/containers/31632989/versions/0",
+        "accountId": "6001380902",
+        "containerId": "31632989",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/6001380902/containers/31632989",
+            "accountId": "6001380902",
+            "containerId": "31632989",
+            "name": "www.e-komponent.com",
+            "publicId": "GTM-T7392HD",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1591950865701",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/6001380902/containers/31632989/workspaces?apiLink=container",
+            "features": {
+                "supportUserPermissions": true,
+                "supportEnvironments": true,
+                "supportWorkspaces": true,
+                "supportGtagConfigs": false,
+                "supportBuiltInVariables": true,
+                "supportClients": false,
+                "supportFolders": true,
+                "supportTags": true,
+                "supportTemplates": true,
+                "supportTriggers": true,
+                "supportVariables": true,
+                "supportVersions": true,
+                "supportZones": true
+            },
+            "tagIds": [
+                "GTM-T7392HD"
+            ]
+        },
+        "tag": [
+            {
+                "accountId": "6001380902",
+                "containerId": "31632989",
+                "tagId": "14",
+                "name": "cHTML - Add To Cart",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>  \nvar currency;\n\nif (CURRENCY == 'TL') {\n    currency = 'TRY'\n} else {\n    currency = CURRENCY\n}\n\nCart.callback.add.push(function (r) {\n    r = Array.isArray(r) ? r[0] : r;\n    var items = {};\n    items = {\n            'item_id': r.addedProduct.id,\n            'item_name': r.addedProduct.name,\n            'item_brand': r.addedProduct.brand,\n            'item_category': r.addedProduct.category,\n            'price': parseFloat(r.addedProduct.price.toFixed(2)),\n            'currency': currency,\n            'quantity': r.addedProduct.quantity,\n            'id': r.addedProduct.id,\n            'google_business_vertical': 'retail',\n        },\n\n        dataLayer.push({\n            'event': 'add_to_cart',\n            'ecommerce': {\n                'currency': currency,\n                'value': Number(parseFloat(r.addedProduct.price * r.addedProduct.quantity).toFixed(2)),\n                'items': [items],\n            }\n        })\n});\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1681728399907",
+                "firingTriggerId": [
+                    "3"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6001380902",
+                "containerId": "31632989",
+                "tagId": "25",
+                "name": "cHTML - View Item",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\nvar value = PRODUCT_DATA[0].total_sale_price\nvar item_name = PRODUCT_DATA[0].name\nvar item_id = PRODUCT_DATA[0].id\nvar item_brand = PRODUCT_DATA[0].brand\nvar item_category = PRODUCT_DATA[0].category\n\nvar currency;\n\nif (CURRENCY == 'TL') {\n    currency = 'TRY'\n} else {\n    currency = CURRENCY\n}\n\nwindow.dataLayer = window.dataLayer || [];\nwindow.dataLayer.push({\n    'event': \"view_item\",\n\n    // GA4 event Event Parametreleri ⤵️\n    'ecommerce': {\n        'currency': \"TRY\",\n        'value': value, // Ürün toplam fiyatı\n        'items': [{\n            'item_id': item_id,\n            'item_name': item_name,\n            'item_brand': item_brand, // Ürüm markası chef ya da catering değeridir. Liv Arwen ya da Catering Kitchen gibi.\n            'item_category': item_category,\n            'price': value, // Ürün fiyatı\n            'currency': \"TRY\",\n            'quantity': 1,\n\n            // Google Ads Remarketing Parametreleri ⤵️\n            'id': item_id, // item_id değeri ile aynı değere sahip.\n            'google_business_vertical': 'retail' // Google Ads parametresi, değişmez.\n        }],\n    },\n});\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1681728496723",
+                "firingTriggerId": [
+                    "24"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6001380902",
+                "containerId": "31632989",
+                "tagId": "27",
+                "name": "cHTML - View Cart",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\nvar productList = cartVue.$.data.CART.PRODUCTS;\n\nvar items = [];\n\nfor (var i = 0; i < productList.length; i++) {\n    items.push({\n        'item_name': productList[i].TITLE,\n        'currency': \"TRY\",\n        'item_brand': productList[i].BRAND, \n        'item_id': productList[i].ID,\n        'price': Number((productList[i].PRICE_SELL + productList[i].PRICE_SELL * productList[i].VAT / 100).toFixed(2)),\n        'quantity': productList[i].COUNT,\n        'item_category': productList[i].CATEGORY_NAME,\n    });\n}\n\nvar data = {\n  'items': items,\n  'currency': \"TRY\",\n  'value': Number(cartVue.$.data.CART.PRICE_GENERAL.toFixed(2)),\n};\nsessionStorage.setItem('cartData', JSON.stringify(data));\n\nwindow.dataLayer = window.dataLayer || [];\nwindow.dataLayer.push({\n    'event': \"view_cart\",\n    'ecommerce': {\n        'currency': \"TRY\",\n        'value': data.value,\n        'items': data.items,\n    }\n});\n</script>\n"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1681743776506",
+                "firingTriggerId": [
+                    "26"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6001380902",
+                "containerId": "31632989",
+                "tagId": "48",
+                "name": "cHTML - Begin Checkout",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\nvar eventName = 'begin_checkout';\nvar value = parseFloat(vm.$.data.summaryData.AMOUNTS.TOTAL.toFixed(2))\n  \nvar currency;\n\nif (CURRENCY == 'TL') {\n    currency = 'TRY'\n} else {\n    currency = CURRENCY\n}\n\nvar items = [];\n\nvar ga4Products = vm.$.data.summaryData.PRODUCTS\n\nfor (var i = 0; i < ga4Products.length; i++) {\n\n    items.push({\n        'item_id': ga4Products[i].ID,\n        'item_name': ga4Products[i].NAME,\n        'currency': currency,\n        'item_brand': ga4Products[i].BRAND,\n        'item_category': ga4Products[i].CATEGORYNAME.trim(),\n        'price': Number(ga4Products[i].TOTALSALEPRICE.toFixed(2)),\n        'quantity': ga4Products[i].COUNT,\n\n        'id': ga4Products[i].ID,\n        'google_business_vertical': 'retail'\n    })\n}\n\nwindow.dataLayer.push({\n    'event': eventName,\n    'ecommerce': {\n        'currency': currency,\n        'value': value,\n        'items': items\n    }\n});\n\nsessionStorage.setItem('items', JSON.stringify(items));\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1681740026604",
+                "firingTriggerId": [
+                    "46"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6001380902",
+                "containerId": "31632989",
+                "tagId": "53",
+                "name": "cHTML - Add Shipping Info",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\nvar eventName = 'add_shipping_info';\nvar value = parseFloat(vm.$.data.summaryData.AMOUNTS.TOTAL.toFixed(2));\n\nvar items = JSON.parse(sessionStorage.getItem('items'));\nvar currency = items[0].currency;\n\nwindow.dataLayer.push({\n    'event': eventName,\n    'ecommerce': {\n        'currency': currency,\n        'value': value,\n        'items': items\n    }\n});\n</script>\n\n"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1681740044223",
+                "firingTriggerId": [
+                    "55",
+                    "59"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6001380902",
+                "containerId": "31632989",
+                "tagId": "57",
+                "name": "cHTML - Add Payment Info",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\nvar eventName = 'add_payment_info';\nvar value = parseFloat(vm.$.data.summaryData.AMOUNTS.TOTAL.toFixed(2));\n\nvar items = JSON.parse(sessionStorage.getItem('items'));\nvar currency = items[0].currency;\n\nwindow.dataLayer.push({\n    'event': eventName,\n    'ecommerce': {\n        'currency': currency,\n        'value': value,\n        'items': items\n    }\n});\n</script>\n\n"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1681740050057",
+                "firingTriggerId": [
+                    "60"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6001380902",
+                "containerId": "31632989",
+                "tagId": "62",
+                "name": "cHTML - View Item List",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\nitems = [];\n\nif (PRODUCT_DATA.length > 10) {\n    var len = 10\n} else {\n    var len = PRODUCT_DATA.length\n}\n\nvar value = 0\n\n\n\nvar currency;\n\nif (CURRENCY == 'TL') {\n    currency = 'TRY'\n} else {\n    currency = CURRENCY\n}\n\n\n for (var i = 0; i < PRODUCT_DATA.length; i++) {\n\n     items.push({\n         'item_id': PRODUCT_DATA[i].id,\n         'item_name': PRODUCT_DATA[i].name,\n         'currency': \"TRY\",\n         'item_brand': PRODUCT_DATA[i].brand,\n         'item_category': PRODUCT_DATA[i].category,\n         'price': PRODUCT_DATA[i].total_sale_price.toFixed(2),\n         'quantity': 1,\n\n         'id': PRODUCT_DATA[i].id,\n         'google_business_vertical': 'retail' \n     })\n }\n\n\nwindow.dataLayer = window.dataLayer || [];\nwindow.dataLayer.push({\n    'event': \"view_item_list\",\n    'ecommerce': {\n        'currency': 'TRY',\n        'items': items\n    }\n});\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1681740861275",
+                "firingTriggerId": [
+                    "22"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6001380902",
+                "containerId": "31632989",
+                "tagId": "66",
+                "name": "cHTML - Purchase - setTimeout 3000",
+                "type": "html",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "html",
+                        "value": "<script>\nsetTimeout(function() {\n  \n  var transaction_id = JSON.parse(vm.approveData.orderData).transaction;\n  var value = Number(JSON.parse(vm.approveData.orderData).amount.toFixed(2));\n  var tax = Number(JSON.parse(vm.approveData.orderData).total_vat.toFixed(2));\n  var shipping = Number(JSON.parse(vm.approveData.orderData).cargo_price.toFixed(2));\n  var mail = JSON.parse(vm.approveData.orderData).__member.mail;\n  var phone = JSON.parse(vm.approveData.orderData).__member.phone;\n  \n  var currency;\n\n  if (CURRENCY == 'TL') {\n      currency = 'TRY'\n  } else {\n      currency = CURRENCY\n  }\n\n  var coupon = JSON.parse(vm.approveData.orderData).coupon;\n  var items = [];\n\n  var ga4Products = JSON.parse(vm.approveData.orderData).products;\n\n  for (var i = 0; i < ga4Products.length; i++) {\n\n      items.push({\n          'item_id': ga4Products[i].identifier,\n          'item_name': ga4Products[i].name,\n          'currency': \"TRY\",\n          'item_brand': ga4Products[i].brand,\n          'item_category': ga4Products[i].category,\n          'price': Number(ga4Products[i].total_amount_order.toFixed(2)),\n          'quantity': Number(ga4Products[i].quantity),\n\n          'id': ga4Products[i].identifier,\n          'google_business_vertical': 'retail' \n      });\n  }\n\n  window.dataLayer.push({\n      'event': 'purchase',\n      'ecommerce': {\n          'currency': currency,\n          'value': value,\n          'transaction_id': transaction_id,\n          'tax': tax,\n          'shipping': shipping,\n          'coupon': coupon,\n          'items': items\n      },\n\n      'enhanced_conversion_data': {\n          \"email\": mail,\n          \"phone_number\": phone,\n      }\n  });\n  \n}, 3000); // 3 saniye sonra\n\n</script>"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "supportDocumentWrite",
+                        "value": "false"
+                    }
+                ],
+                "fingerprint": "1682335561776",
+                "firingTriggerId": [
+                    "64",
+                    "71"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "monitoringMetadata": {
+                    "type": "MAP"
+                },
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "6001380902",
+                "containerId": "31632989",
+                "triggerId": "3",
+                "name": "Page - Add To Cart Pages",
+                "type": "PAGEVIEW",
+                "filter": [
+                    {
+                        "type": "CONTAINS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{cjs - addToCartPages}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1681728130952"
+            },
+            {
+                "accountId": "6001380902",
+                "containerId": "31632989",
+                "triggerId": "22",
+                "name": "Load - Category / Search",
+                "type": "WINDOW_LOADED",
+                "filter": [
+                    {
+                        "type": "MATCH_REGEX",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{js - page_type}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "search|category"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1681732512212"
+            },
+            {
+                "accountId": "6001380902",
+                "containerId": "31632989",
+                "triggerId": "24",
+                "name": "Page - Product",
+                "type": "PAGEVIEW",
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{js - page_type}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "product"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1675432536370"
+            },
+            {
+                "accountId": "6001380902",
+                "containerId": "31632989",
+                "triggerId": "26",
+                "name": "Page - Cart",
+                "type": "WINDOW_LOADED",
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{js - page_type}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "cart"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{cjs - cart total}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "0"
+                            },
+                            {
+                                "type": "BOOLEAN",
+                                "key": "negate",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1681739055228"
+            },
+            {
+                "accountId": "6001380902",
+                "containerId": "31632989",
+                "triggerId": "46",
+                "name": "Trigger - Address Page",
+                "type": "PAGEVIEW",
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{js - page_type}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "address"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1681729926725"
+            },
+            {
+                "accountId": "6001380902",
+                "containerId": "31632989",
+                "triggerId": "55",
+                "name": "Trigger - order#/address",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "gtm.formSubmit"
+                            }
+                        ]
+                    }
+                ],
+                "filter": [
+                    {
+                        "type": "CONTAINS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{jv - window.document.URL}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "order#/address"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1681737710118"
+            },
+            {
+                "accountId": "6001380902",
+                "containerId": "31632989",
+                "triggerId": "59",
+                "name": "Trigger - ÖDEME ADIMINA GEÇ",
+                "type": "CLICK",
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Click Text}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "ÖDEME ADIMINA GEÇ"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "CONTAINS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Page URL}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "/order"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1681737845009"
+            },
+            {
+                "accountId": "6001380902",
+                "containerId": "31632989",
+                "triggerId": "60",
+                "name": "Trigger - SİPARİŞİ TAMAMLA",
+                "type": "CLICK",
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{jv - window.document.URL}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "https://www.e-komponent.com/order#/payment"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{Click Text}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "SİPARİŞİ TAMAMLA"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1681738107158"
+            },
+            {
+                "accountId": "6001380902",
+                "containerId": "31632989",
+                "triggerId": "64",
+                "name": "History - Approve (Havale)",
+                "type": "HISTORY_CHANGE",
+                "filter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{jv - window.document.URL}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "https://www.e-komponent.com/order#/approve"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{gtm.newHistoryState.back}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "/payment"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1682317696420"
+            },
+            {
+                "accountId": "6001380902",
+                "containerId": "31632989",
+                "triggerId": "71",
+                "name": "Load - Approve (Kredi Kartı)",
+                "type": "DOM_READY",
+                "filter": [
+                    {
+                        "type": "CONTAINS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{jv - window.document.URL}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "www.e-komponent.com/order?_st="
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1682585627565"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "6001380902",
+                "containerId": "31632989",
+                "variableId": "15",
+                "name": "cjs - addToCartPages",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function addToCartPages(){\n  \n  return document.querySelector('body').innerHTML.includes('SEPETE EKLE')\n\n}"
+                    }
+                ],
+                "fingerprint": "1675408350311",
+                "formatValue": {}
+            },
+            {
+                "accountId": "6001380902",
+                "containerId": "31632989",
+                "variableId": "21",
+                "name": "js - page_type",
+                "type": "j",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "PAGE_TYPE"
+                    }
+                ],
+                "fingerprint": "1675411104041",
+                "formatValue": {}
+            },
+            {
+                "accountId": "6001380902",
+                "containerId": "31632989",
+                "variableId": "45",
+                "name": "cjs - cart total",
+                "type": "jsm",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "javascript",
+                        "value": "function() {\n  return cartVue && cartVue.$.data && cartVue.$.data.CART && cartVue.$.data.CART.PRICE_GENERAL;\n}\n"
+                    }
+                ],
+                "fingerprint": "1681727744470",
+                "formatValue": {}
+            },
+            {
+                "accountId": "6001380902",
+                "containerId": "31632989",
+                "variableId": "54",
+                "name": "jv - window.document.URL",
+                "type": "j",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "window.document.URL"
+                    }
+                ],
+                "fingerprint": "1681735663662",
+                "formatValue": {}
+            },
+            {
+                "accountId": "6001380902",
+                "containerId": "31632989",
+                "variableId": "63",
+                "name": "gtm.newHistoryState.back",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "INTEGER",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "BOOLEAN",
+                        "key": "setDefaultValue",
+                        "value": "false"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "gtm.newHistoryState.back"
+                    }
+                ],
+                "fingerprint": "1681742205980",
+                "formatValue": {}
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "6001380902",
+                "containerId": "31632989",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "6001380902",
+                "containerId": "31632989",
+                "type": "CLICK_TEXT",
+                "name": "Click Text"
+            }
+        ],
+        "fingerprint": "1683533321502",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/6001380902/containers/31632989/versions/0?apiLink=version"
+    }
+}
